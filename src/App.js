@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import ThemeSwitch from './components/ThemeSwitch';
-
-const todoData = [
-  {
-    task: 'Organize Garage',
-    id: 1528817077286,
-    completed: false
-  },
-  {
-    task: 'Bake Cookies',
-    id: 1528817084358,
-    completed: false
-  }
-];
+import { initialState, todoReducer } from './reducers/todoReducer';
 
 const App = () => {
-  const [todos, setTodos] = useState(todoData);
+  const [{ todos }, dispatch] = useReducer(todoReducer, initialState);
 
   useEffect(() => {
     localStorage.getItem('Todos') &&
-      setTodos(JSON.parse(localStorage.getItem('Todos')));
+      dispatch({
+        type: 'SET_TODOS',
+        payload: JSON.parse(localStorage.getItem('Todos'))
+      });
   }, []);
 
   useEffect(() => {
@@ -36,27 +27,32 @@ const App = () => {
         id: Date.now(),
         completed: false
       };
-      setTodos([...todos, newTodo]);
+      dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
     }
   };
 
   const toggleTodo = todoId => {
-    setTodos(
-      todos.map(todo => {
-        if (todoId === todo.id) {
-          return {
-            ...todo,
-            completed: !todo.completed
-          };
-        }
-        return todo;
-      })
-    );
+    const toggledTodo = todos.map(todo => {
+      if (todoId === todo.id) {
+        return {
+          ...todo,
+          completed: !todo.completed
+        };
+      }
+      return todo;
+    });
+    dispatch({
+      type: 'SET_TODOS',
+      payload: toggledTodo
+    });
   };
 
   const clearCompleted = e => {
     e.preventDefault();
-    setTodos(todos.filter(todo => !todo.completed));
+    dispatch({
+      type: 'SET_TODOS',
+      payload: todos.filter(todo => !todo.completed)
+    });
   };
 
   return (
