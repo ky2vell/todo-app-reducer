@@ -19,40 +19,18 @@ const App = () => {
     localStorage.setItem('Todos', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = (e, todo) => {
-    e.preventDefault();
+  const addTodo = todo => {
     if (todo.length > 0) {
-      const newTodo = {
-        task: todo,
-        id: Date.now(),
-        completed: false
-      };
-      dispatch({ type: 'SET_TODOS', payload: [...todos, newTodo] });
+      dispatch({ type: 'ADD_TODO', payload: todo });
     }
   };
 
   const toggleTodo = todoId => {
-    const toggledTodo = todos.map(todo => {
-      if (todoId === todo.id) {
-        return {
-          ...todo,
-          completed: !todo.completed
-        };
-      }
-      return todo;
-    });
-    dispatch({
-      type: 'SET_TODOS',
-      payload: toggledTodo
-    });
+    dispatch({ type: 'TOGGLE_TODO', payload: todoId });
   };
 
-  const clearCompleted = e => {
-    e.preventDefault();
-    dispatch({
-      type: 'SET_TODOS',
-      payload: todos.filter(todo => !todo.completed)
-    });
+  const clearCompleted = () => {
+    dispatch({ type: 'CLEAR_TODOS' });
   };
 
   return (

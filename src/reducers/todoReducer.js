@@ -20,6 +20,38 @@ export const todoReducer = (state, action) => {
         ...state,
         todos: action.payload
       };
+    case 'ADD_TODO':
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          {
+            task: action.payload,
+            id: Date.now(),
+            completed: false
+          }
+        ]
+      };
+    case 'TOGGLE_TODO':
+      return {
+        ...state,
+        todos: state.todos.map(todo => {
+          if (action.payload === todo.id) {
+            return {
+              ...todo,
+              completed: !todo.completed
+            };
+          }
+          return todo;
+        })
+      };
+    case 'CLEAR_TODOS':
+      return {
+        ...state,
+        todos: state.todos.filter(todo => {
+          return !todo.completed;
+        })
+      };
     default:
       return state;
   }
