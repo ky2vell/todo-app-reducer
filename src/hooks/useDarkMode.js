@@ -11,7 +11,7 @@ export const useDarkMode = (key, initialValue) => {
       : root.setAttribute('data-theme', 'light');
   }, [darkMode]);
 
-  const toggleMode = e => {
+  const toggleMode = () => {
     setDarkMode(!darkMode);
   };
 

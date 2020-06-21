@@ -1,0 +1,48 @@
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1em;
+
+  @include respond(tablet) {
+    flex-direction: column;
+  }
+}
+
+input#submit {
+  padding: 0.6em 1em;
+  background-color: var(--input-background);
+  margin: 0 1em 0 0;
+  color: var(--input-color);
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+  border-radius: 2px;
+  transition: var(--color-transition), box-shadow 400ms;
+  width: 18%;
+  font-size: 1em;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0.2rem 0.8rem 1.6rem var(--box-shadow-input);
+  }
+
+  &::placeholder {
+    color: #adb5b9;
+
+    @include respond(tablet) {
+      text-align: center;
+    }
+  }
+
+  @include respond(tablet) {
+    margin: 0;
+    width: 50%;
+    margin-bottom: 1rem;
+  }
+
+  @include respond(mobile) {
+    width: 100%;
+  }
+}
