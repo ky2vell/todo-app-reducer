@@ -4,6 +4,7 @@ import { initialState, todoReducer } from './reducers/todoReducer';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import ThemeSwitch from './components/ThemeSwitch';
+import './scss/style.scss';
 
 const App = () => {
   const [{ todos }, dispatch] = useReducer(todoReducer, initialState);
