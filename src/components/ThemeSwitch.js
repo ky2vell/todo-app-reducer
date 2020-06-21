@@ -1,32 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 const ThemeSwitch = () => {
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const themeSwitch = document.getElementById('checkbox');
-    localStorage.getItem('Theme') === 'dark'
-      ? (themeSwitch.checked = true)
-      : (themeSwitch.checked = false);
-
-    document.documentElement.setAttribute(
-      'data-theme',
-      localStorage.getItem('Theme')
-    );
-  }, []);
-
-  const toggleTheme = e => {
-    const theme = e.target.checked ? 'dark' : 'light';
-    setTheme(theme);
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('Theme', theme);
-  };
+  const [darkMode, toggleMode] = useDarkMode('DarkMode', false);
 
   return (
     <div className='theme-switch-wrapper'>
       <strong>Light</strong>
       <label className='theme-switch' htmlFor='checkbox'>
-        <input type='checkbox' id='checkbox' onChange={toggleTheme} />
+        <input
+          type='checkbox'
+          id='checkbox'
+          onChange={toggleMode}
+          checked={darkMode}
+        />
         <div className='slider round'></div>
       </label>
       <strong>Dark</strong>

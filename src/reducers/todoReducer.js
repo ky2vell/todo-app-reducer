@@ -15,10 +15,10 @@ export const initialState = {
 
 export const todoReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_TODOS':
+    case 'SET_LOCAL_TODOS':
       return {
         ...state,
-        todos: action.payload
+        todos: JSON.parse(action.payload)
       };
     case 'ADD_TODO':
       return {

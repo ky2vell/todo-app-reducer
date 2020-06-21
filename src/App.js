@@ -1,8 +1,9 @@
 import React, { useReducer, useEffect } from 'react';
+import { initialState, todoReducer } from './reducers/todoReducer';
+
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import ThemeSwitch from './components/ThemeSwitch';
-import { initialState, todoReducer } from './reducers/todoReducer';
 
 const App = () => {
   const [{ todos }, dispatch] = useReducer(todoReducer, initialState);
@@ -10,8 +11,8 @@ const App = () => {
   useEffect(() => {
     localStorage.getItem('Todos') &&
       dispatch({
-        type: 'SET_TODOS',
-        payload: JSON.parse(localStorage.getItem('Todos'))
+        type: 'SET_LOCAL_TODOS',
+        payload: localStorage.getItem('Todos')
       });
   }, []);
 
