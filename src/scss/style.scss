@@ -1,0 +1,14 @@
+@import './config.scss';
+
+// UTILITIES, MIXINS, BUTTONS
+@import './mixins';
+@import './utilities';
+@import './buttons';
+
+// FONTS
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Roboto&display=swap');
+
+// COMPONENTS
+@import '../components/ThemeSwitch.scss';
+@import '../components/Todo.scss';
+@import '../components/TodoForm.scss';

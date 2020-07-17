@@ -1,0 +1,28 @@
+// Light theme colors w/ CSS variables
+:root {
+  --primary-color: #ffffff;
+  --list-background: #ececec;
+  --button-background: #000000;
+  --input-background: #f5f3f3;
+  --input-color: #000000;
+  --heading-color: #292922;
+  --switch-color: #000000;
+  --box-shadow-input: #3c3b3b;
+  --box-shadow-todo: #adadad;
+  --background-transition: 0.4s background-color;
+  --color-transition: 0.4s color;
+  --transition-both: 0.4s color, 0.4s background-color;
+}
+
+// Dark theme colors w/ CSS variables
+[data-theme='dark'] {
+  --primary-color: #0e141b;
+  --list-background: #ffffff;
+  --button-background: #4a67f8;
+  --input-background: #2e3746;
+  --input-color: #ffffff;
+  --heading-color: #ff0a78;
+  --switch-color: #ffffff;
+  --box-shadow-input: #0e141b;
+  --box-shadow-todo: #0e141b;
+}
